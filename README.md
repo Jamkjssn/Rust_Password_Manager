@@ -34,7 +34,7 @@ To recreate the development environment, you need the following software and/or 
 
 I found these websites useful in developing this software:
 
-* [Rust Programming Language Book]((https://doc.rust-lang.org/book/ch01-03-hello-cargo.html))
+* [Rust Programming Language Book](https://doc.rust-lang.org/book/ch01-03-hello-cargo.html)
 * [Rust in Visual Studio Code](https://code.visualstudio.com/docs/languages/rust)
 * Official website: [Rust Programming Language - Getting Started](https://www.rust-lang.org/learn/get-started)
 * [ChatGPT](https://chatgpt.com/)
