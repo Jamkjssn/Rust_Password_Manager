@@ -45,4 +45,4 @@ The following items I plan to fix, improve, and/or add to this project in the fu
 
 * [ ] I want to add the ability for the program to encrypt and save your passwords on your computer so they arent lost when you exit the program
 * [ ] Once the passwords can be saved I'd like to implement a masterpassword. This would be optional but would allow you to protect your saved passwords with a masterpassword that would allow you to access the saved passwords
-* [ ] Right now I'm not really the happiest with the way it all looks, and would like to spend some time doing a little bit of playing around with the design of the UI. 
+* [X] Right now I'm not really the happiest with the way it all looks, and would like to spend some time doing a little bit of playing around with the design of the UI. 
