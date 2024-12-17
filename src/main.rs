@@ -9,7 +9,7 @@ struct LoginInfo {
 }
 
 fn main() {
-    
+    clear();
     // Welcome them to the program
     println!("Welcome to the password manager!");
     get_input("\nPress \"Enter\" to begin");
@@ -31,35 +31,42 @@ fn main() {
 
         let user_choice = get_input("Enter your choice: ");
 
+        clear();
         match user_choice.trim() {
             // Store a new password
             "1" =>{
                 add_password(&mut logins);
-                get_input("\n\nPress \"Enter\" to return to the menu");
+                get_input("\nPress \"Enter\" to return to the menu");
             }
             
             // View a password
             "2" =>{
-                get_password(&mut logins);     
-                get_input("\n\nPress \"Enter\" to return to the menu");
+                if logins.is_empty(){
+                    println!("No passwords stored.");
+                }
+                else{
+                    get_password(&mut logins);     
+                }
+                get_input("\nPress \"Enter\" to return to the menu");
             }
             
             // Edit a password
             "3" =>{
                 edit_password(&mut logins);             
-                get_input("\n\nPress \"Enter\" to return to the menu");
+                get_input("\nPress \"Enter\" to return to the menu");
             }
             
             // Delete a password
             "4" =>{
                 delete_password(&mut logins);
-                get_input("\n\nPress \"Enter\" to return to the menu");
+                get_input("\nPress \"Enter\" to return to the menu");
             }
             
             // Exit the program
             "5" =>{
                 println!("Thank you for using the password manager!");
-                get_input("\n\nPress \"Enter\" to finish closing the program");
+                get_input("\nPress \"Enter\" to finish closing the program");
+                clear();
                 break;
             }
 
@@ -73,12 +80,14 @@ fn main() {
 
 // Function for adding a password to the logins vector. 
 fn add_password(logins: &mut Vec<LoginInfo>){
+    clear();
     // First get the website name
     println!("What website will be using this password?");
     let website = get_input("Website Name: ");
     
+    clear();
     // Prompt user for username and password
-    println!("Enter the associated Username and Password.");
+    println!("Enter the Username and Password for \"{website}\" below.");
     let username = get_input("Enter your Username: ");
     let password = get_input("Enter your Password: ");
     
@@ -94,11 +103,12 @@ fn get_password(logins: &mut Vec<LoginInfo>){
     // First display the logins to the user
     display_logins(&logins);
     // Prompt user for website associated with the password
-    println!("Enter the name of the website you want to view the password for.");
+    println!("\nEnter the name of the website you want to view the password for.");
     let website = get_input("Website Name: ");
+    clear();
     match find_by_name(logins, &website){
         Some(login) => {
-            println!("Login info for {}:", website);
+            println!("\nLogin info for \"{}\":", website);
             println!("Username: {}", login.username);
             println!("Password: {}", login.password);
         }
@@ -110,13 +120,13 @@ fn get_password(logins: &mut Vec<LoginInfo>){
 
 // Function for editing contents of a password in the password vector.
 fn edit_password(logins: &mut Vec<LoginInfo>){
-    clear()
+    clear();
     // First display the logins to the user
     display_logins(&logins);
     // Prompt user for website associated with the password
-    println!("Enter the name of the website you want to edit the password for.");
+    println!("\nEnter the name of the website you want to edit the password for.");
     let website = get_input("Website Name: ");
-    clear()
+    clear();
     match find_by_name(logins, &website){
         Some(login) => {
             // First display current username and password
@@ -124,7 +134,7 @@ fn edit_password(logins: &mut Vec<LoginInfo>){
             println!("Username: {}\nPassword: {}", login.username, login.password);
 
             // Prompt user for updated username and password
-            println!("Enter the new associated Username and Password.");
+            println!("\nEnter the new associated Username and Password.");
             let new_username = get_input("Enter the updated Username: ");
             let new_password = get_input("Enter the updated Password: ");
 
@@ -143,7 +153,7 @@ fn delete_password(logins: &mut Vec<LoginInfo>){
     // First display the logins to the user
     display_logins(&logins);
     // Prompt user for website associated with the password
-    println!("Enter the name of the website you want to delete the password for.");
+    println!("\nEnter the name of the website you want to delete the password for.");
     let website = get_input("Website Name: ");
     match find_by_name(logins, &website){
         Some(_login) => {
@@ -171,7 +181,7 @@ fn display_logins(logins: &Vec<LoginInfo>){
     if logins.len() == 0{
         println!("No passwords stored.")
     }
-    println!("Currently saved logins:\n");
+    println!("Currently saved logins:");
     let mut index = 1;
     for login in logins{
         println!("\t{}. {}", index, login.website);
